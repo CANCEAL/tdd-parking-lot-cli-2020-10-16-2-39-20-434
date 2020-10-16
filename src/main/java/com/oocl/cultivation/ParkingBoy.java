@@ -1,5 +1,8 @@
 package com.oocl.cultivation;
 
+import exceptions.NoParkingTicketException;
+import exceptions.UnrecognizedParkingTicketException;
+
 public class ParkingBoy {
     private ParkingLot parkingLot;
 
@@ -12,6 +15,11 @@ public class ParkingBoy {
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
-        return parkingLot.fetch(parkingTicket);
+        if (parkingTicket == null) {
+            throw new NoParkingTicketException("Unrecognized Parking Ticket!");
+        } else {
+            return parkingLot.fetch(parkingTicket);
+        }
     }
+
 }

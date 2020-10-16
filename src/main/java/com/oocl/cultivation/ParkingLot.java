@@ -15,6 +15,7 @@ public class ParkingLot {
 
     public ParkingLot() {
         this.capacity = DEFAULT_CAPACITY;
+        this.ticketCarMap = new HashMap<>();
     }
 
     public ParkingTicket park(Car car) {
