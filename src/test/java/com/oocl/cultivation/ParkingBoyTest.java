@@ -59,11 +59,11 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = new ParkingTicket();
 
-        //when
-        Car fetchedCar = parkingBoy.fetch(parkingTicket);
-
         //then
-        assertNull(fetchedCar);
+        assertThrows(UnrecognizedParkingTicketException.class, () -> {
+            //given
+            parkingBoy.fetch(parkingTicket);
+        });
     }
     
     @Test
@@ -72,7 +72,10 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
+        //when
         assertThrows(NoParkingTicketException.class, () -> {
+
+            //given
             parkingBoy.fetch(null);
         });
     }
