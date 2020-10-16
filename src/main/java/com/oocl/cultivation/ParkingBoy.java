@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import exceptions.NoParkingTicketException;
+import exceptions.NotEnoughPositionException;
 import exceptions.UnrecognizedParkingTicketException;
 
 public class ParkingBoy {
@@ -11,7 +12,12 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLot.isParkingLotFull() ? null : parkingLot.park(car);
+
+        if (parkingLot.isParkingLotFull()) {
+            throw new NotEnoughPositionException("Not Enough Position!");
+        } else {
+            return parkingLot.park(car);
+        }
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
