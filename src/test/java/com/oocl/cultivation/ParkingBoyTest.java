@@ -1,5 +1,7 @@
 package com.oocl.cultivation;
 
+import exceptions.NoParkingTicketException;
+import exceptions.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +19,7 @@ class ParkingBoyTest {
         //then
         assertNotNull(parkingTicket);
     }
-    
+
     @Test
     public void should_return_car_when_fetched_given_a_correct_parking_ticket() {
         //given
@@ -31,7 +33,7 @@ class ParkingBoyTest {
         //then
         assertSame(car, fetchedCar);
     }
-    
+
     @Test
     public void should_return_cars_when_fetched_given_a_correct_parking_tickets() {
         //given
@@ -49,7 +51,7 @@ class ParkingBoyTest {
         assertSame(car1, fetchedCar1);
         assertSame(car2, fetchedCar2);
     }
-    
+
     @Test
     public void should_return_no_car_when_fetched_given_a_wrong_ticket() {
         //given
@@ -65,16 +67,14 @@ class ParkingBoyTest {
     }
     
     @Test
-    public void should_return_no_car_when_fetched_given_no_ticket() {
+    public void should_return_no_car_when_fetched_given_no_ticket(){
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
-        //when
-        Car fetchedCar = parkingBoy.fetch(null);
-
-        //then
-        assertNull(fetchedCar);
+        assertThrows(NoParkingTicketException.class, () -> {
+            parkingBoy.fetch(null);
+        });
     }
 
     @Test
