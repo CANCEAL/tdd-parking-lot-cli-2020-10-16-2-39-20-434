@@ -10,8 +10,10 @@ class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+
         //when
         ParkingTicket parkingTicket = parkingBoy.park(car);
+
         //then
         assertNotNull(parkingTicket);
     }
@@ -22,8 +24,10 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(car);
+
         //when
         Car fetchedCar = parkingBoy.fetch(parkingTicket);
+
         //then
         assertSame(car, fetchedCar);
     }
@@ -36,9 +40,11 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(car1);
         ParkingTicket parkingTicket2 = parkingBoy.park(car2);
+
         //when
         Car fetchedCar1 = parkingBoy.fetch(parkingTicket1);
         Car fetchedCar2 = parkingBoy.fetch(parkingTicket2);
+
         //then
         assertSame(car1, fetchedCar1);
         assertSame(car2, fetchedCar2);
@@ -50,8 +56,10 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = new ParkingTicket();
+
         //when
         Car fetchedCar = parkingBoy.fetch(parkingTicket);
+
         //then
         assertNull(fetchedCar);
     }
@@ -61,8 +69,10 @@ class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+
         //when
         Car fetchedCar = parkingBoy.fetch(null);
+
         //then
         assertNull(fetchedCar);
     }
@@ -73,13 +83,11 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(car);
+
         //when
-        car = parkingBoy.fetch(parkingTicket);
+        parkingBoy.fetch(parkingTicket);
+
         //then
-        assertNotNull(car);
-        //when
-        car = parkingBoy.fetch(parkingTicket);
-        //then
-        assertNull(car);
+        assertNull(parkingBoy.fetch(parkingTicket));
     }
 }
