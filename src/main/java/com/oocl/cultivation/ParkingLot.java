@@ -1,10 +1,12 @@
 package com.oocl.cultivation;
 
+import exceptions.UnrecognizedParkingTicketException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    public static final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 10;
     private Map<ParkingTicket, Car> ticketCarMap;
     private int capacity;
 
@@ -18,20 +20,24 @@ public class ParkingLot {
         this.ticketCarMap = new HashMap<>();
     }
 
-    public ParkingTicket park(Car car) {
+    ParkingTicket park(Car car) {
         ParkingTicket parkingTicket = new ParkingTicket();
         ticketCarMap.put(parkingTicket, car);
         return parkingTicket;
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
-        Car car;
-        car = ticketCarMap.get(parkingTicket);
+    Car fetch(ParkingTicket parkingTicket) {
+        Car carTicket;
+        carTicket = ticketCarMap.get(parkingTicket);
         ticketCarMap.remove(parkingTicket);
-        return car;
+
+        if (carTicket == null) {
+            throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket!");
+        }
+        return carTicket;
     }
 
-    public boolean isParkingLotFull() {
+    boolean isParkingLotFull() {
         return ticketCarMap.size() >= capacity;
     }
 
