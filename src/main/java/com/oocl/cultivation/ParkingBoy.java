@@ -8,7 +8,7 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLot.park(car);
+        return parkingLot.isParkingLotFull() ? null : parkingLot.park(car);
     }
 
     public Car fetch(ParkingTicket parkingTicket) {
