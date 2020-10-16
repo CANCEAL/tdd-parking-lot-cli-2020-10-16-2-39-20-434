@@ -90,4 +90,20 @@ class ParkingBoyTest {
         //then
         assertNull(parkingBoy.fetch(parkingTicket));
     }
+
+    @Test
+    public void should_return_park_fail_and_no_ticket_when_parking_given_parking_lot_has_1_capacity_and_is_already_taken() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingTicket parkingTicket1 = parkingBoy.park(car1);
+
+        //when
+        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
+
+        //then
+        assertNull(parkingTicket2);
+    }
 }
