@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 import exceptions.NoParkingTicketException;
+import exceptions.NotEnoughPositionException;
 import exceptions.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +62,8 @@ class ParkingBoyTest {
 
         //then
         assertThrows(UnrecognizedParkingTicketException.class, () -> {
-            //given
+
+            //when
             parkingBoy.fetch(parkingTicket);
         });
     }
@@ -72,10 +74,10 @@ class ParkingBoyTest {
         Car car = new Car();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
-        //when
+        //then
         assertThrows(NoParkingTicketException.class, () -> {
 
-            //given
+            //when
             parkingBoy.fetch(null);
         });
     }
@@ -101,12 +103,11 @@ class ParkingBoyTest {
         Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        ParkingTicket parkingTicket1 = parkingBoy.park(car1);
 
-        //when
-        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
 
-        //then
-        assertNull(parkingTicket2);
+        assertThrows(NotEnoughPositionException.class, () -> {
+            parkingBoy.park(car1);
+            parkingBoy.park(car2);
+        });
     }
 }
