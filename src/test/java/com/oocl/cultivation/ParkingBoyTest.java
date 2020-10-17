@@ -5,6 +5,9 @@ import exceptions.NotEnoughPositionException;
 import exceptions.UnrecognizedParkingTicketException;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -68,7 +71,7 @@ class ParkingBoyTest {
             parkingBoy.fetch(parkingTicket);
         });
     }
-    
+
     @Test
     void should_return_no_car_when_fetched_given_no_ticket(){
         //given
@@ -114,5 +117,25 @@ class ParkingBoyTest {
             parkingBoy.park(car1);
             parkingBoy.park(car2);
         });
+    }
+
+    @Test
+    void should_park_to_parking_lot_2_when_parking_given_parking_lot_1_is_full() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        //when
+        parkMultipleCars(parkingBoy, 10);
+        Car car11 = new Car();
+        ParkingTicket parkingTicket = parkingBoy.park(car11);
+
+        //then
+        assertNull(parkingLot1.fetch(parkingTicket));
+        assertNotNull(parkingLot2.fetch(parkingTicket));
     }
 }
