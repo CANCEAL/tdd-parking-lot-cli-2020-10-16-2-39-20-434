@@ -1,6 +1,5 @@
 package com.oocl.cultivation;
 
-import exceptions.NoParkingTicketException;
 import exceptions.NotEnoughPositionException;
 import exceptions.UnrecognizedParkingTicketException;
 

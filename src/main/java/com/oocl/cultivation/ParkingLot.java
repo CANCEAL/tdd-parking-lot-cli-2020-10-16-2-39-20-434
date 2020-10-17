@@ -41,4 +41,8 @@ public class ParkingLot {
         return ticketCarMap.size() < capacity;
     }
 
+    public int getParkingLotCapacity() {
+        return capacity - ticketCarMap.size();
+    }
+
 }
