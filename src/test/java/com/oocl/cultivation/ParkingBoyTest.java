@@ -119,6 +119,13 @@ class ParkingBoyTest {
         });
     }
 
+    void parkMultipleCars(ParkingBoy parkingBoy, int maxCar) {
+        Car car = new Car();
+        for (int numberOfCars=1; numberOfCars<=maxCar; numberOfCars++) {
+            parkingBoy.park(car);
+        }
+    }
+
     @Test
     void should_park_to_parking_lot_2_when_parking_given_parking_lot_1_is_full() {
         //given

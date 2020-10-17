@@ -1,6 +1,6 @@
 package com.oocl.cultivation;
 
-import exceptions.UnrecognizedParkingTicketException;
+import exceptions.NoParkingTicketException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,14 +31,14 @@ public class ParkingLot {
         carTicket = ticketCarMap.get(parkingTicket);
         ticketCarMap.remove(parkingTicket);
 
-        if (carTicket == null) {
-            throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket!");
+        if (parkingTicket == null) {
+            throw new NoParkingTicketException("No Parking Ticket!");
         }
         return carTicket;
     }
 
     boolean isParkingLotFull() {
-        return ticketCarMap.size() >= capacity;
+        return ticketCarMap.size() < capacity;
     }
 
 }
