@@ -35,4 +35,28 @@ public class ServiceManagerTest extends ParkingBoyTest{
         //then
         assertNotNull(parkingBoy1.fetch(parkingTicket1));
     }
+    
+    @Test
+    public void should_park_car_on_parking_lots_when_managing_given_service_manager() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingLot parkingLot3 = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot3);
+
+        ServiceManager serviceManager = new ServiceManager(parkingLots);
+
+        //when
+        parkMultipleCars(serviceManager, 10);
+        Car car11 = new Car();
+        ParkingTicket parkingTicket = serviceManager.park(car11);
+
+        //then
+        assertNull(parkingLot1.fetch(parkingTicket));
+        assertNotNull(parkingLot2.fetch(parkingTicket));
+        assertNull(parkingLot3.fetch(parkingTicket));
+    }
 }
