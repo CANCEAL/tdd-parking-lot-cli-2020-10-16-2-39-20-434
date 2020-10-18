@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLots;
+    private List<ParkingBoy> parkingBoys;
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLots = Collections.singletonList(parkingLot);
@@ -15,6 +16,11 @@ public class ParkingBoy {
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
+    }
+
+    public ParkingBoy(List<ParkingLot> parkingLots, List<ParkingBoy> parkingBoys) {
+        this.parkingLots = parkingLots;
+        this.parkingBoys = parkingBoys;
     }
 
     public ParkingTicket park(Car car) {

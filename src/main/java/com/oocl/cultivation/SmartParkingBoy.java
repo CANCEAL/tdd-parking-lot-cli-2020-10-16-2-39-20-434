@@ -2,10 +2,11 @@ package com.oocl.cultivation;
 
 import exceptions.NotEnoughPositionException;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SmartParkingBoy extends ParkingBoy{
+public class SmartParkingBoy extends ParkingBoy {
     private List<ParkingLot> parkingLots;
 
     public SmartParkingBoy(ParkingLot parkingLot) {
@@ -22,7 +23,7 @@ public class SmartParkingBoy extends ParkingBoy{
     public ParkingTicket park(Car car) {
         ParkingLot parkingLot = parkingLots.stream()
                 .filter(ParkingLot::isParkingLotFull)
-                .reduce((current, next) -> current.getParkingLotCapacity() > next.getParkingLotCapacity() ? current : next)
+                .reduce((current, next) -> current.getParkingLotCapacity() >= next.getParkingLotCapacity() ? current : next)
                 .orElse(null);
 
         if (parkingLot == null) {
