@@ -20,4 +20,21 @@ public class ServiceManager extends ParkingBoy{
         this.parkingLots = parkingLots;
         this.parkingBoys = parkingBoys;
     }
+
+    @Override
+    public Car fetch(ParkingTicket parkingTicket) {
+        Car car = getCarFromParkingLots(parkingTicket);
+        if (car == null) {
+            throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket!");
+        }
+        return car;
+    }
+
+    @Override
+    public Car getCarFromParkingLots(ParkingTicket parkingTicket) {
+        for (ParkingLot parkingLot : parkingLots) {
+            return parkingLot.fetch(parkingTicket);
+        }
+        return null;
+    }
 }
