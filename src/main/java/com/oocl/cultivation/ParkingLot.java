@@ -8,7 +8,7 @@ import java.util.Map;
 public class ParkingLot {
     private static final int DEFAULT_CAPACITY = 10;
     private Map<ParkingTicket, Car> ticketCarMap;
-    private int capacity;
+    private double capacity;
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
@@ -41,8 +41,12 @@ public class ParkingLot {
         return ticketCarMap.size() < capacity;
     }
 
-    public int getParkingLotCapacity() {
+    public double getParkingLotCapacity() {
         return capacity - ticketCarMap.size();
+    }
+
+    public double getPositionRate() {
+        return (capacity - ticketCarMap.size()) / capacity;
     }
 
 }
