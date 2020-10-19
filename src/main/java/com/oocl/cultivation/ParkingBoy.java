@@ -15,10 +15,6 @@ public class ParkingBoy {
         this.parkingLots = Collections.singletonList(parkingLot);
     }
 
-    public List<ParkingLot> getParkingLot() {
-        return this.parkingLots;
-    }
-
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
