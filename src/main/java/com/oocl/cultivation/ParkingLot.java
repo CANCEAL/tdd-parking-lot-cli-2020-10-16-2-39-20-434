@@ -27,14 +27,14 @@ public class ParkingLot {
     }
 
     Car fetch(ParkingTicket parkingTicket) {
-        Car carTicket;
-        carTicket = ticketCarMap.get(parkingTicket);
+        Car car;
+        car = ticketCarMap.get(parkingTicket);
         ticketCarMap.remove(parkingTicket);
 
         if (parkingTicket == null) {
             throw new NoParkingTicketException("No Parking Ticket!");
         }
-        return carTicket;
+        return car;
     }
 
     boolean isParkingLotFull() {
