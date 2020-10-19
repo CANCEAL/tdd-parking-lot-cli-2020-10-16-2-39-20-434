@@ -7,8 +7,6 @@ import java.util.List;
 
 public class ParkingManager extends ParkingBoy {
     List<ParkingBoy> parkingBoys;
-    //private final String NOT_ENOUGH_POSITION = "Not Enough Position!";
-    //private final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized Parking Ticket!";
 
     public ParkingManager(ParkingLot parkingLot) {
         super(parkingLot);
