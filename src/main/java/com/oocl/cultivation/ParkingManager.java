@@ -18,11 +18,6 @@ public class ParkingManager extends ParkingBoy {
         parkingBoys = new ArrayList<>();
     }
 
-    public ParkingManager(List<ParkingLot> parkingLots, List<ParkingBoy> parkingBoys) {
-        super(parkingLots);
-        this.parkingBoys = parkingBoys;
-    }
-
     public void addParkingBoy(ParkingBoy parkingBoy) {
         parkingBoys.add(parkingBoy);
     }
