@@ -5,30 +5,30 @@ import exceptions.UnrecognizedParkingTicketException;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collector;
 
 public class ParkingBoy {
-    private List<ParkingLot> parkingLots;
     private List<ParkingBoy> parkingBoys;
+    private List<ParkingLot> parkingLots;
+    public final String NOT_ENOUGH_POSITION = "Not Enough Position!";
+    public final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized Parking Ticket!";
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLots = Collections.singletonList(parkingLot);
+    }
+
+    public List<ParkingLot> getParkingLot() {
+        return this.parkingLots;
     }
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
-    public ParkingBoy(List<ParkingLot> parkingLots, List<ParkingBoy> parkingBoys) {
-        this.parkingLots = parkingLots;
-        this.parkingBoys = parkingBoys;
-    }
-
     public ParkingTicket park(Car car) {
         ParkingLot parkingLot = parkingLots.stream().filter(ParkingLot -> ParkingLot.isParkingLotFull()).findFirst().orElse(null);
 
         if (parkingLot == null) {
-            throw new NotEnoughPositionException("Not Enough Position!");
+            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
         }
         return parkingLot.park(car);
     }
@@ -36,7 +36,7 @@ public class ParkingBoy {
     public Car fetch(ParkingTicket parkingTicket) {
         Car car = getCarFromParkingLots(parkingTicket);
         if (car == null) {
-            throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket!");
+            throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
         }
         return car;
     }
