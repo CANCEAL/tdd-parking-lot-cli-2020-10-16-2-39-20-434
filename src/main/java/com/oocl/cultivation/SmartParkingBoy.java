@@ -3,6 +3,7 @@ package com.oocl.cultivation;
 import exceptions.NotEnoughPositionException;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
@@ -21,13 +22,8 @@ public class SmartParkingBoy extends ParkingBoy {
     @Override
     public ParkingTicket park(Car car) {
         ParkingLot parkingLot = parkingLots.stream()
-                .filter(ParkingLot::isParkingLotFull)
-                .reduce((current, next) -> current.getParkingLotCapacity() >= next.getParkingLotCapacity() ? current : next)
-                .orElse(null);
-
-        if (parkingLot == null) {
-            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
-        }
+                .max(Comparator.comparing(ParkingLot::getParkingLotCapacity))
+                .get();
         return parkingLot.park(car);
     }
 }
