@@ -8,8 +8,8 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLots;
-    public final String NOT_ENOUGH_POSITION = "Not Enough Position!";
-    public final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized Parking Ticket!";
+    static final String NOT_ENOUGH_POSITION = "Not Enough Position!";
+    static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized Parking Ticket!";
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLots = Collections.singletonList(parkingLot);
@@ -33,17 +33,13 @@ public class ParkingBoy {
     }
 
     public Automobile fetch(ParkingTicket parkingTicket) {
-        Automobile automobile = getCarFromParkingLots(parkingTicket);
-        if (automobile == null) {
-            throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
+        for (ParkingLot parkingLot : parkingLots) {
+            Automobile automobile = parkingLot.fetch(parkingTicket);
+            if (automobile != null) {
+                return automobile;
+            }
         }
-        return automobile;
+        throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
     }
 
-    public Automobile getCarFromParkingLots(ParkingTicket parkingTicket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            return parkingLot.fetch(parkingTicket);
-        }
-        return null;
-    }
 }
