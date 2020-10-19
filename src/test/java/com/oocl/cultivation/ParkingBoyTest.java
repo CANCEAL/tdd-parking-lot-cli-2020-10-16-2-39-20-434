@@ -139,36 +139,9 @@ class ParkingBoyTest {
         //when
         parkMultipleCars(parkingBoy, 10);
         Car car11 = new Car();
-        ParkingTicket parkingTicket = parkingBoy.park(car11);
+        parkingBoy.park(car11);
 
         //then
-        assertNull(parkingLot1.fetch(parkingTicket));
-        assertNotNull(parkingLot2.fetch(parkingTicket));
+        assertEquals(9, parkingLot2.getParkingLotCapacity());
     }
-
-    @Test
-    void should_park_to_parking_lot_which_has_more_empty_space_when_parking_given_parking_car() {
-        //given
-        ParkingLot parkingLot1 = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
-
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot1);
-        parkMultipleCars(smartParkingBoy, 4);
-
-        smartParkingBoy = new SmartParkingBoy(parkingLot2);
-        parkMultipleCars(smartParkingBoy, 8);
-
-        smartParkingBoy = new SmartParkingBoy(parkingLots);
-
-        //when
-        Car car1 = new Car();
-        ParkingTicket parkingTicket = smartParkingBoy.park(car1);
-
-        //then
-        assertNotNull(parkingLot1.fetch(parkingTicket));
-    }
-
 }
