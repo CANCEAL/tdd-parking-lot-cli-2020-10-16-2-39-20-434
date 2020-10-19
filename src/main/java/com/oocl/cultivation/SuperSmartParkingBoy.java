@@ -26,7 +26,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
                 .orElse(null);
 
         if (parkingLot == null) {
-            throw new NotEnoughPositionException("Not Enough Position!");
+            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
         }
         return parkingLot.park(car);
     }

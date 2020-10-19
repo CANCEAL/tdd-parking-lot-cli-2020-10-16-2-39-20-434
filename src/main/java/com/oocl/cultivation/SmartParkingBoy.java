@@ -2,7 +2,6 @@ package com.oocl.cultivation;
 
 import exceptions.NotEnoughPositionException;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class SmartParkingBoy extends ParkingBoy {
                 .orElse(null);
 
         if (parkingLot == null) {
-            throw new NotEnoughPositionException("Not Enough Position!");
+            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
         }
         return parkingLot.park(car);
     }
