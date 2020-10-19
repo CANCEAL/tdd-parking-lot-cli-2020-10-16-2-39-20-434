@@ -11,12 +11,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
+    Automobile automobile = new Automobile();
+    ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
+
     @Test
     void should_return_a_parking_ticket_when_parking_given_a_car_to_parking_boy() {
         //given
-        Automobile automobile = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-
         //when
         ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
@@ -27,8 +27,6 @@ class ParkingBoyTest {
     @Test
     void should_return_car_when_fetched_given_a_correct_parking_ticket() {
         //given
-        Automobile automobile = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
         //when
@@ -43,7 +41,6 @@ class ParkingBoyTest {
         //given
         Automobile automobile1 = new Automobile();
         Automobile automobile2 = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket1 = parkingBoy.park(automobile1);
         ParkingTicket parkingTicket2 = parkingBoy.park(automobile2);
 
@@ -59,8 +56,6 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetched_given_a_wrong_ticket() {
         //given
-        Automobile automobile = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         parkingBoy.park(automobile);
         ParkingTicket parkingTicket = new ParkingTicket();
 
@@ -75,8 +70,6 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetched_given_no_ticket(){
         //given
-        Automobile automobile = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         parkingBoy.park(automobile);
 
         //then
@@ -90,8 +83,6 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetched_given_a_used_parking_ticket() {
         //given
-        Automobile automobile = new Automobile();
-        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
         //then
@@ -120,7 +111,6 @@ class ParkingBoyTest {
     }
 
     void parkMultipleCars(ParkingBoy parkingBoy, int maxCar) {
-        Automobile automobile = new Automobile();
         for (int numberOfCars=1; numberOfCars<=maxCar; numberOfCars++) {
             parkingBoy.park(automobile);
         }
