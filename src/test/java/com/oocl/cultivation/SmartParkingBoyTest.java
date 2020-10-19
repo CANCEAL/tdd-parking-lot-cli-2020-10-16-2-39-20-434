@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SmartParkingBoyTest extends ParkingBoyTest {
@@ -28,9 +29,9 @@ public class SmartParkingBoyTest extends ParkingBoyTest {
 
         //when
         Car car1 = new Car();
-        ParkingTicket parkingTicket = smartParkingBoy.park(car1);
+        smartParkingBoy.park(car1);
 
         //then
-        assertNotNull(parkingLot1.fetch(parkingTicket));
+        assertEquals(5, parkingLot1.getParkingLotCapacity());
     }
 }
