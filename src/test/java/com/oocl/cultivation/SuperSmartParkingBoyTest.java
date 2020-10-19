@@ -26,8 +26,8 @@ public class SuperSmartParkingBoyTest extends ParkingBoyTest{
         superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
 
         //when
-        Car car = new Car();
-        ParkingTicket parkingTicket = superSmartParkingBoy.park(car);
+        Automobile automobile = new Automobile();
+        ParkingTicket parkingTicket = superSmartParkingBoy.park(automobile);
 
         //then
         assertEquals(11, parkingLot1.getParkingLotCapacity());

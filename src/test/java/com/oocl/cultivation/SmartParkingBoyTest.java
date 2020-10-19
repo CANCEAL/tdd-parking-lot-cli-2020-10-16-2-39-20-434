@@ -28,8 +28,8 @@ public class SmartParkingBoyTest extends ParkingBoyTest {
         smartParkingBoy = new SmartParkingBoy(parkingLots);
 
         //when
-        Car car1 = new Car();
-        smartParkingBoy.park(car1);
+        Automobile automobile1 = new Automobile();
+        smartParkingBoy.park(automobile1);
 
         //then
         assertEquals(5, parkingLot1.getParkingLotCapacity());

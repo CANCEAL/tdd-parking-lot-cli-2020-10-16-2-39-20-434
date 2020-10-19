@@ -1,10 +1,8 @@
 package com.oocl.cultivation;
 
 import exceptions.NotEnoughPositionException;
-import exceptions.UnrecognizedParkingTicketException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ParkingManager extends ParkingBoy {
@@ -31,14 +29,14 @@ public class ParkingManager extends ParkingBoy {
         parkingBoys.add(parkingBoy);
     }
 
-    public ParkingTicket park(ParkingBoy parkingBoy, Car car) {
+    public ParkingTicket park(ParkingBoy parkingBoy, Automobile automobile) {
         if (parkingBoys.contains(parkingBoy)) {
-            return parkingBoy.park(car);
+            return parkingBoy.park(automobile);
         }
         throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
     }
 
-    public Car fetch(ParkingBoy parkingBoy, ParkingTicket parkingTicket) {
+    public Automobile fetch(ParkingBoy parkingBoy, ParkingTicket parkingTicket) {
         if (parkingBoys.contains(parkingBoy)) {
             return parkingBoy.fetch(parkingTicket);
         }

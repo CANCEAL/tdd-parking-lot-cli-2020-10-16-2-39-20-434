@@ -24,24 +24,24 @@ public class ParkingBoy {
         this.parkingLots = parkingLots;
     }
 
-    public ParkingTicket park(Car car) {
+    public ParkingTicket park(Automobile automobile) {
         ParkingLot parkingLot = parkingLots.stream().filter(ParkingLot -> ParkingLot.isParkingLotFull()).findFirst().orElse(null);
 
         if (parkingLot == null) {
             throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
         }
-        return parkingLot.park(car);
+        return parkingLot.park(automobile);
     }
 
-    public Car fetch(ParkingTicket parkingTicket) {
-        Car car = getCarFromParkingLots(parkingTicket);
-        if (car == null) {
+    public Automobile fetch(ParkingTicket parkingTicket) {
+        Automobile automobile = getCarFromParkingLots(parkingTicket);
+        if (automobile == null) {
             throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
         }
-        return car;
+        return automobile;
     }
 
-    public Car getCarFromParkingLots(ParkingTicket parkingTicket) {
+    public Automobile getCarFromParkingLots(ParkingTicket parkingTicket) {
         for (ParkingLot parkingLot : parkingLots) {
             return parkingLot.fetch(parkingTicket);
         }

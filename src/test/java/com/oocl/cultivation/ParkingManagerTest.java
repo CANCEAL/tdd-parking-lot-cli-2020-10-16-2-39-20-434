@@ -18,8 +18,8 @@ public class ParkingManagerTest extends ParkingBoyTest{
         parkingManager.addParkingBoy(parkingBoy1);
 
         //when
-        Car car1 = new Car();
-        ParkingTicket parkingTicket1 = parkingManager.park(parkingBoy1, car1);
+        Automobile automobile1 = new Automobile();
+        ParkingTicket parkingTicket1 = parkingManager.park(parkingBoy1, automobile1);
 
         //then
         assertNotNull(parkingManager.fetch(parkingBoy1, parkingTicket1));
@@ -36,8 +36,8 @@ public class ParkingManagerTest extends ParkingBoyTest{
         ParkingManager parkingManager = new ParkingManager(parkingLots);
 
         //when
-        Car car1 = new Car();
-        ParkingTicket parkingTicket = parkingManager.park(car1);
+        Automobile automobile1 = new Automobile();
+        ParkingTicket parkingTicket = parkingManager.park(automobile1);
 
         //then
         assertNotNull(parkingManager.fetch(parkingTicket));
@@ -52,8 +52,8 @@ public class ParkingManagerTest extends ParkingBoyTest{
         parkingManager.addParkingBoy(parkingBoy1);
 
         //when
-        Car car1 = new Car();
-        ParkingTicket parkingTicket1 = parkingManager.park(parkingBoy1, car1);
+        Automobile automobile1 = new Automobile();
+        ParkingTicket parkingTicket1 = parkingManager.park(parkingBoy1, automobile1);
         ParkingTicket parkingTicket2 = new ParkingTicket();
 
         //then

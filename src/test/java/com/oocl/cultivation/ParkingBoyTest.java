@@ -14,11 +14,11 @@ class ParkingBoyTest {
     @Test
     void should_return_a_parking_ticket_when_parking_given_a_car_to_parking_boy() {
         //given
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
         //when
-        ParkingTicket parkingTicket = parkingBoy.park(car);
+        ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
         //then
         assertNotNull(parkingTicket);
@@ -27,41 +27,41 @@ class ParkingBoyTest {
     @Test
     void should_return_car_when_fetched_given_a_correct_parking_ticket() {
         //given
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        ParkingTicket parkingTicket = parkingBoy.park(car);
+        ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
         //when
-        Car fetchedCar = parkingBoy.fetch(parkingTicket);
+        Automobile fetchedAutomobile = parkingBoy.fetch(parkingTicket);
 
         //then
-        assertSame(car, fetchedCar);
+        assertSame(automobile, fetchedAutomobile);
     }
 
     @Test
     void should_return_cars_when_fetched_given_a_correct_parking_tickets() {
         //given
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Automobile automobile1 = new Automobile();
+        Automobile automobile2 = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        ParkingTicket parkingTicket1 = parkingBoy.park(car1);
-        ParkingTicket parkingTicket2 = parkingBoy.park(car2);
+        ParkingTicket parkingTicket1 = parkingBoy.park(automobile1);
+        ParkingTicket parkingTicket2 = parkingBoy.park(automobile2);
 
         //when
-        Car fetchedCar1 = parkingBoy.fetch(parkingTicket1);
-        Car fetchedCar2 = parkingBoy.fetch(parkingTicket2);
+        Automobile fetchedAutomobile1 = parkingBoy.fetch(parkingTicket1);
+        Automobile fetchedAutomobile2 = parkingBoy.fetch(parkingTicket2);
 
         //then
-        assertSame(car1, fetchedCar1);
-        assertSame(car2, fetchedCar2);
+        assertSame(automobile1, fetchedAutomobile1);
+        assertSame(automobile2, fetchedAutomobile2);
     }
 
     @Test
     void should_return_no_car_when_fetched_given_a_wrong_ticket() {
         //given
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        parkingBoy.park(car);
+        parkingBoy.park(automobile);
         ParkingTicket parkingTicket = new ParkingTicket();
 
         //then
@@ -75,9 +75,9 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetched_given_no_ticket(){
         //given
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        parkingBoy.park(car);
+        parkingBoy.park(automobile);
 
         //then
         assertThrows(NoParkingTicketException.class, () -> {
@@ -90,9 +90,9 @@ class ParkingBoyTest {
     @Test
     void should_return_no_car_when_fetched_given_a_used_parking_ticket() {
         //given
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
-        ParkingTicket parkingTicket = parkingBoy.park(car);
+        ParkingTicket parkingTicket = parkingBoy.park(automobile);
 
         //then
         assertThrows(UnrecognizedParkingTicketException.class, () -> {
@@ -106,23 +106,23 @@ class ParkingBoyTest {
     @Test
     void should_return_park_fail_and_no_ticket_when_parking_given_parking_lot_has_1_capacity_and_is_already_taken() {
         //given
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Automobile automobile1 = new Automobile();
+        Automobile automobile2 = new Automobile();
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
 
         //then
         assertThrows(NotEnoughPositionException.class, () -> {
 
             //when
-            parkingBoy.park(car1);
-            parkingBoy.park(car2);
+            parkingBoy.park(automobile1);
+            parkingBoy.park(automobile2);
         });
     }
 
     void parkMultipleCars(ParkingBoy parkingBoy, int maxCar) {
-        Car car = new Car();
+        Automobile automobile = new Automobile();
         for (int numberOfCars=1; numberOfCars<=maxCar; numberOfCars++) {
-            parkingBoy.park(car);
+            parkingBoy.park(automobile);
         }
     }
 
@@ -138,8 +138,8 @@ class ParkingBoyTest {
 
         //when
         parkMultipleCars(parkingBoy, 10);
-        Car car11 = new Car();
-        parkingBoy.park(car11);
+        Automobile automobile11 = new Automobile();
+        parkingBoy.park(automobile11);
 
         //then
         assertEquals(9, parkingLot2.getParkingLotCapacity());
