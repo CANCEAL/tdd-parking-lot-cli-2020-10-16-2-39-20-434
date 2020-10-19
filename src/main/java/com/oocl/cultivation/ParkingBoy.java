@@ -24,7 +24,7 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Automobile automobile) {
-        ParkingLot parkingLot = parkingLots.stream().filter(ParkingLot -> ParkingLot.isParkingLotFull()).findFirst().orElse(null);
+        ParkingLot parkingLot = parkingLots.stream().filter(ParkingLot::isParkingLotFull).findFirst().orElse(null);
 
         if (parkingLot == null) {
             throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
