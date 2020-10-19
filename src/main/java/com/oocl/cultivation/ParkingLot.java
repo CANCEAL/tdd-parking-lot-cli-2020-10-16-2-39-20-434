@@ -27,13 +27,12 @@ public class ParkingLot {
     }
 
     Automobile fetch(ParkingTicket parkingTicket) {
-        Automobile automobile;
-        automobile = ticketCarMap.get(parkingTicket);
-        ticketCarMap.remove(parkingTicket);
-
         if (parkingTicket == null) {
             throw new NoParkingTicketException("No Parking Ticket!");
         }
+
+        Automobile automobile = ticketCarMap.get(parkingTicket);
+        ticketCarMap.remove(parkingTicket);
         return automobile;
     }
 
@@ -45,7 +44,7 @@ public class ParkingLot {
         return capacity - ticketCarMap.size();
     }
 
-    public double getPositionRate() {
+    double getPositionRate() {
         return (capacity - ticketCarMap.size()) / capacity;
     }
 
