@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class ParkingBoy {
-    private List<ParkingBoy> parkingBoys;
     private List<ParkingLot> parkingLots;
     public final String NOT_ENOUGH_POSITION = "Not Enough Position!";
     public final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized Parking Ticket!";
