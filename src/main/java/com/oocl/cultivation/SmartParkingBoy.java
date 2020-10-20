@@ -1,20 +1,14 @@
 package com.oocl.cultivation;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
     private List<ParkingLot> parkingLots;
 
-    public SmartParkingBoy(ParkingLot parkingLot) {
-        super(parkingLot);
-        this.parkingLots = Collections.singletonList(parkingLot);
-    }
-
-    public SmartParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
-        this.parkingLots = parkingLots;
+    public SmartParkingBoy(ParkingLot... parkingLot) {
+        this.parkingLots = Arrays.asList(parkingLot);
     }
 
     @Override
