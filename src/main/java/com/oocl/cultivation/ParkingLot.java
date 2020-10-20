@@ -1,7 +1,5 @@
 package com.oocl.cultivation;
 
-import exceptions.NoParkingTicketException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,10 +25,8 @@ public class ParkingLot {
     }
 
     Automobile fetch(ParkingTicket parkingTicket) {
-        //TODO : return map.remove(parkingTicket) || ticketCarMap.remove(parkingTicket, car);
-        Automobile automobile = ticketCarMap.get(parkingTicket);
-        ticketCarMap.remove(parkingTicket);
-        return automobile;
+        ticketCarMap.get(parkingTicket);
+        return ticketCarMap.remove(parkingTicket);
     }
 
     boolean isParkingLotFull() {
@@ -45,7 +41,7 @@ public class ParkingLot {
         return (capacity - ticketCarMap.size()) / capacity;
     }
 
-    public boolean containsTicket(ParkingTicket parkingTicket) {
+    boolean containsTicket(ParkingTicket parkingTicket) {
         return ticketCarMap.containsKey(parkingTicket);
     }
 }
