@@ -2,9 +2,6 @@ package com.oocl.cultivation;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartParkingBoyTest extends ParkingBoyTest {
@@ -14,9 +11,6 @@ public class SmartParkingBoyTest extends ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
 
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLot1);
         parkMultipleCars(smartParkingBoy, 4);
@@ -24,7 +18,7 @@ public class SmartParkingBoyTest extends ParkingBoyTest {
         smartParkingBoy = new SmartParkingBoy(parkingLot2);
         parkMultipleCars(smartParkingBoy, 8);
 
-        smartParkingBoy = new SmartParkingBoy(parkingLots);
+        smartParkingBoy = new SmartParkingBoy(parkingLot1, parkingLot2);
 
         //when
         Automobile automobile1 = new Automobile();
