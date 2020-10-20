@@ -19,16 +19,11 @@ public class ParkingBoy {
         this.parkingLots = parkingLots;
     }
 
-    //TODO : use orElseThrow, each operation should be on one line
     public ParkingTicket park(Automobile automobile) {
         ParkingLot parkingLot = parkingLots.stream()
                 .filter(ParkingLot::isParkingLotFull)
                 .findFirst()
                 .orElseThrow(() -> new NotEnoughPositionException(NOT_ENOUGH_POSITION));
-
-//        if (parkingLot == null) {
-//            throw new NotEnoughPositionException(NOT_ENOUGH_POSITION);
-//        }
         return parkingLot.park(automobile);
     }
 
