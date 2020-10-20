@@ -27,10 +27,7 @@ public class ParkingLot {
     }
 
     Automobile fetch(ParkingTicket parkingTicket) {
-        if (parkingTicket == null) {
-            throw new NoParkingTicketException("No Parking Ticket!");
-        }
-
+        //TODO : return map.remove(parkingTicket) || ticketCarMap.remove(parkingTicket, car);
         Automobile automobile = ticketCarMap.get(parkingTicket);
         ticketCarMap.remove(parkingTicket);
         return automobile;
@@ -48,4 +45,7 @@ public class ParkingLot {
         return (capacity - ticketCarMap.size()) / capacity;
     }
 
+    public boolean containsTicket(ParkingTicket parkingTicket) {
+        return ticketCarMap.containsKey(parkingTicket);
+    }
 }
